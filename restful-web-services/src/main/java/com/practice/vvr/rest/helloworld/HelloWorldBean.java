@@ -1,4 +1,4 @@
-package com.practice.vvr.rest;
+package com.practice.vvr.rest.helloworld;
 
 public class HelloWorldBean {
 
