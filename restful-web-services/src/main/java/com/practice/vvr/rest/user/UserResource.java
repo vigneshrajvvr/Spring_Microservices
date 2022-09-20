@@ -23,6 +23,7 @@ public class UserResource {
 		return service.findAll();
 	}
 	
+	//GET /user/{id}
 	@GetMapping("/users/{id}")
 	public User retrieveUser(@PathVariable("id") Integer id) {
 		return service.findOne(id);
