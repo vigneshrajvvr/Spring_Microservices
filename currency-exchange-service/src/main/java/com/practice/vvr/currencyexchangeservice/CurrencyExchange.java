@@ -2,13 +2,23 @@ package com.practice.vvr.currencyexchangeservice;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class CurrencyExchange {
 	
+	@Id
 	private Long id;
+	
+	@Column(name="currency_from")
 	private String from;
+	
+	@Column(name="currency_to")
 	private String to;
 	private BigDecimal conversionMultiple;
-	private String enviroment;
+	private String environment;
 	
 	public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
 		super();
@@ -50,12 +60,12 @@ public class CurrencyExchange {
 		this.conversionMultiple = conversionMultiple;
 	}
 
-	public String getEnviroment() {
-		return enviroment;
+	public String getEnvironment() {
+		return environment;
 	}
 
-	public void setEnviroment(String enviroment) {
-		this.enviroment = enviroment;
+	public void setEnvironment(String environment) {
+		this.environment = environment;
 	}
 
 }
