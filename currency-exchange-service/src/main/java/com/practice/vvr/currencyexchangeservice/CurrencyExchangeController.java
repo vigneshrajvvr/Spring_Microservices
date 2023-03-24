@@ -22,6 +22,7 @@ public class CurrencyExchangeController {
 		CurrencyExchange currentExchange = new CurrencyExchange(1000L, from, to, BigDecimal.valueOf(50));
 		String port = environment.getProperty("local.server.port");
 		currentExchange.setEnviroment(port);
+		// need to add jpa changes
 		
 		return currentExchange;
 	}	
