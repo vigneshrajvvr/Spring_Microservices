@@ -7,7 +7,7 @@ import com.eazybytes.accounts.entity.Customer;
 
 public class CustomerMapper {
 
-    public static CustomerDto mapToAccountsDto(Customer customer, CustomerDto customerDto) {
+    public static CustomerDto mapTosCustomerDto(Customer customer, CustomerDto customerDto) {
         customerDto.setName(customer.getName());
         customerDto.setEmail(customer.getEmail());
         customerDto.setMobileNumber(customer.getMobileNumber());
