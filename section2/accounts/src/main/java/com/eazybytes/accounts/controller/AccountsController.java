@@ -38,10 +38,19 @@ public class AccountsController {
             summary = "Create Account REST API",
             description = "REST API to create new Customer & Account inside EazyBank"
     )
-    @ApiResponse(
-            responseCode = "201",
-            description = "HTTP Status CREATED"
-    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "HTTP Status CREATED"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    })
     @PostMapping("/create")
     public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) {
         iAccountsService.createAccount(customerDto);
@@ -78,6 +87,10 @@ public class AccountsController {
                     description = "HTTP Status OK"
             ),
             @ApiResponse(
+                    responseCode = "417",
+                    description = "Exception failed"
+            ),
+            @ApiResponse(
                     responseCode = "500",
                     description = "HTTP Status Internal Server Error",
                     content = @Content(
@@ -95,9 +108,9 @@ public class AccountsController {
                     AccountConstants.STATUS_200, AccountConstants.MESSAGE_200
             ));
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(
                     new ResponseDto(
-                            AccountConstants.STATUS_500, AccountConstants.MESSAGE_500
+                            AccountConstants.STATUS_417, AccountConstants.MESSAGE_417_UPDATE
                     )
             );
         }
@@ -111,6 +124,10 @@ public class AccountsController {
             @ApiResponse(
                     responseCode = "200",
                     description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Exception failed"
             ),
             @ApiResponse(
                     responseCode = "500",
@@ -129,8 +146,8 @@ public class AccountsController {
                     new ResponseDto(AccountConstants.STATUS_200, AccountConstants.MESSAGE_200)
             );
         } else  {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-              new ResponseDto(AccountConstants.STATUS_500, AccountConstants.MESSAGE_500)
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(
+              new ResponseDto(AccountConstants.STATUS_417, AccountConstants.MESSAGE_417_DELETE)
             );
         }
     }
